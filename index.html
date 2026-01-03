@@ -1,0 +1,1269 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calendar Pro v4 (Templates)</title>
+
+  <style>
+    :root{
+      --bg:#0f172a; --line:rgba(255,255,255,.10); --text:#e6eeff; --muted:#a7b4e6;
+      --accent:#7c5cff; --ok:#2fe7a4; --warn:#ffd166; --danger:#ff5c7a;
+      --friSat: rgba(255, 209, 102, .16);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Tahoma, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:
+        radial-gradient(1200px 700px at 10% 0%, rgba(124,92,255,.28), transparent 55%),
+        radial-gradient(1000px 700px at 90% 25%, rgba(47,231,164,.18), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+    .wrap{max-width:1200px;margin:0 auto;padding:16px}
+    .top{
+      display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-radius:16px; padding:12px 14px; backdrop-filter: blur(10px);
+    }
+    .brand{display:flex;gap:10px;align-items:center}
+    .logo{
+      width:42px;height:42px;border-radius:14px;
+      background:linear-gradient(135deg, var(--accent), #35c6ff);
+      box-shadow:0 10px 30px rgba(124,92,255,.25);
+    }
+    h1{margin:0;font-size:16px}
+    .sub{margin-top:2px;font-size:12px;color:var(--muted)}
+    .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .pill{
+      display:inline-flex;gap:8px;align-items:center;
+      padding:8px 10px;border-radius:999px;border:1px solid var(--line);
+      background:rgba(255,255,255,.05);font-size:12px;color:var(--muted);
+      max-width: 100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+    }
+    .dot{width:10px;height:10px;border-radius:50%}
+    .dot.guest{background:rgba(255,255,255,.35)}
+    .dot.user{background:rgba(53,198,255,.8)}
+    .dot.admin{background:var(--ok)}
+
+    button{
+      appearance:none; border:1px solid var(--line);
+      background:rgba(255,255,255,.06); color:var(--text);
+      padding:10px 12px;border-radius:12px; cursor:pointer;
+      font-weight:900; transition:.12s transform,.12s background;
+    }
+    button:hover{transform:translateY(-1px);background:rgba(255,255,255,.09)}
+    button.primary{background:rgba(124,92,255,.25);border-color:rgba(124,92,255,.45)}
+    button.danger{background:rgba(255,92,122,.16);border-color:rgba(255,92,122,.35)}
+    button.soft{background:rgba(47,231,164,.10);border-color:rgba(47,231,164,.25)}
+    button.ghost{background:transparent;border-color:rgba(255,255,255,.14)}
+
+    .note{
+      margin-top:12px; border:1px dashed rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04); border-radius:14px;
+      padding:10px 12px; color:var(--muted); font-size:12px;
+    }
+    .warnBox{
+      border:1px solid rgba(255,209,102,.35);
+      background:rgba(255,209,102,.10);
+      border-radius:14px; padding:10px 12px; font-size:12px; color:rgba(255,255,255,.92);
+    }
+
+    .panels{margin-top:14px;display:grid;grid-template-columns:1fr;gap:12px}
+    .panel{border:1px solid var(--line);border-radius:16px;overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
+    .panelHead{
+      padding:12px 14px; display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+      background:rgba(0,0,0,.18); border-bottom:1px solid var(--line); user-select:none;
+    }
+    .panelHead strong{font-size:13px}
+    .panelBody{padding:12px 14px}
+    .accordionHead{cursor:pointer}
+    .accordionHead:hover{background:rgba(255,255,255,.06)}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:860px){ .grid2{grid-template-columns:1fr} }
+
+    label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}
+    input, textarea, select{
+      width:100%; padding:10px 12px; border-radius:12px;
+      border:1px solid var(--line); background:rgba(255,255,255,.06);
+      color:var(--text); outline:none;
+    }
+    textarea{min-height:88px;resize:vertical}
+    .rowBtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+
+    .weeks{margin-top:14px;display:grid;gap:12px}
+    .week{border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius:16px; overflow:hidden;
+    }
+    .weekHead{padding:10px 12px; border-bottom:1px solid var(--line); background:rgba(0,0,0,.18);
+      display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+    }
+    .weekHead .title{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+    .weekHead .title strong{font-size:13px}
+    .weekHead .title span{font-size:12px;color:var(--muted)}
+    .table{display:grid; grid-template-columns: repeat(7, 1fr); border-top:1px solid var(--line)}
+    .th,.td{padding:10px;border-left:1px solid var(--line);border-bottom:1px solid var(--line);min-height:96px;position:relative}
+    .th{min-height:auto;background:rgba(255,255,255,.04);text-align:center;font-weight:900;padding:10px 6px}
+    .th:last-child,.td:last-child{border-left:none}
+    .friSat{background:var(--friSat)}
+    .gDate{font-size:12px;color:var(--muted)}
+    .hDate{font-size:12px}
+    .today{
+      position:absolute;top:8px;left:8px;font-size:11px;font-weight:900;color:var(--ok);
+      padding:4px 8px;border-radius:999px;border:1px solid rgba(47,231,164,.45);background:rgba(47,231,164,.12);
+    }
+    .events{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+    .ev{
+      display:flex;gap:8px;align-items:flex-start;justify-content:space-between;
+      border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.06);
+      border-radius:12px; padding:6px 8px; font-size:12px;
+    }
+    .ev .tag{width:10px;height:10px;border-radius:3px;margin-top:3px;flex:0 0 auto}
+    .ev .txt{flex:1}
+    .ev .x{cursor:pointer;font-weight:900;color:rgba(255,255,255,.75);padding:0 6px;border-radius:8px;line-height:18px}
+    .ev .x:hover{background:rgba(255,255,255,.08)}
+    .badge{
+      display:inline-flex;font-size:10px;font-weight:900;
+      padding:3px 7px;border-radius:999px;border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.18); margin-top:6px;color:rgba(255,255,255,.9);
+    }
+
+    .scroll{overflow:auto;border:1px solid var(--line);border-radius:14px}
+    table{border-collapse:separate;border-spacing:0;width:100%;min-width:900px}
+    th,td{border-bottom:1px solid var(--line);padding:10px;font-size:12px;white-space:nowrap}
+    th{position:sticky;top:0;background:rgba(255,255,255,.04);color:var(--muted);text-align:right;font-weight:900}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;}
+    .chev{opacity:.9;font-weight:900}
+
+    .modalBack{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.55);
+      display:none; align-items:center; justify-content:center;
+      padding:16px;
+      z-index:9999;
+    }
+    .modal{
+      width:100%;
+      max-width:720px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      backdrop-filter: blur(12px);
+      overflow:hidden;
+      box-shadow:0 30px 90px rgba(0,0,0,.45);
+    }
+    .modalHead{
+      padding:12px 14px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      border-bottom:1px solid var(--line);
+      background:rgba(0,0,0,.20);
+    }
+    .modalHead strong{font-size:13px}
+    .modalBody{padding:12px 14px}
+    .hint{font-size:12px;color:var(--muted)}
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand">
+      <div class="logo"></div>
+      <div>
+        <h1 id="pageTitle">Calendar Pro v4</h1>
+        <div id="pageSub" class="sub">يتطلب تسجيل دخول + عضوية القالب</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <span id="rolePill" class="pill"><span class="dot guest"></span><span>زائر</span></span>
+      <button id="btnShowLogin" class="primary">دخول</button>
+      <button id="btnLogout" style="display:none;">خروج</button>
+    </div>
+  </div>
+
+  <div id="demoNote" class="note" style="display:none;"></div>
+  <div id="mustTemplate" class="warnBox" style="display:none;margin-top:12px;"></div>
+  <div id="noAccess" class="warnBox" style="display:none;margin-top:12px;"></div>
+
+  <!-- Login -->
+  <div class="panels" id="loginPanel" style="display:none;">
+    <div class="panel">
+      <div class="panelHead">
+        <strong>تسجيل الدخول</strong>
+        <span class="sub">بعد الدخول يتم التحقق من عضويتك بالقالب</span>
+      </div>
+      <div class="panelBody">
+        <div class="grid2">
+          <div>
+            <label>البريد الإلكتروني</label>
+            <input id="loginEmail" type="email" placeholder="name@example.com">
+          </div>
+          <div>
+            <label>كلمة المرور</label>
+            <input id="loginPass" type="password" placeholder="••••••••">
+          </div>
+        </div>
+        <div style="margin-top:10px" class="rowBtns">
+          <button id="btnForgot" class="soft">نسيت كلمة المرور؟</button>
+          <button id="btnLogin" class="primary">دخول</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Panel -->
+  <div class="panels" id="adminPanel" style="display:none;">
+    <div class="panel">
+      <div class="panelHead">
+        <strong>لوحة تحكم المدير (داخل القالب)</strong>
+        <span id="templateBadge" class="sub"></span>
+      </div>
+      <div class="panelBody">
+
+        <div class="grid2">
+
+          <!-- Members -->
+          <div class="panel" style="border-radius:14px">
+            <div id="membersHead" class="panelHead accordionHead">
+              <strong>إدارة الأعضاء</strong>
+              <span class="sub">إضافة UID + تحديد الدور</span>
+              <span class="chev" id="membersChev">▾</span>
+            </div>
+            <div id="membersBox" class="panelBody" style="display:none;">
+              <div class="warnBox">
+                ✅ طريقة البيع: تعطي العميل الرابط، ثم تضيف له UID كـ admin داخل members.
+              </div>
+
+              <div class="grid2" style="margin-top:10px">
+                <div>
+                  <label>UID المستخدم</label>
+                  <input id="memUid" class="mono" placeholder="مثال: A1b2C3...">
+                </div>
+                <div>
+                  <label>الدور</label>
+                  <select id="memRole">
+                    <option value="user">user</option>
+                    <option value="admin">admin</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="rowBtns" style="margin-top:10px;justify-content:flex-start">
+                <button id="btnAddMember" class="primary">إضافة / تحديث عضو</button>
+                <button id="btnRefreshMembers" class="ghost">تحديث</button>
+              </div>
+
+              <div class="scroll" style="margin-top:10px">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>UID</th>
+                      <th>role</th>
+                      <th>حذف</th>
+                    </tr>
+                  </thead>
+                  <tbody id="membersTbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weeks -->
+          <div class="panel" style="border-radius:14px">
+            <div id="weeksHead" class="panelHead accordionHead">
+              <strong>إدارة الأسابيع والإجازات</strong>
+              <span class="sub">داخل القالب</span>
+              <span class="chev" id="weeksChev">▾</span>
+            </div>
+            <div id="weeksBox" class="panelBody" style="display:none;">
+              <div class="rowBtns" style="justify-content:flex-start">
+                <button id="btnAddWeek" class="soft">+ إضافة أسبوع</button>
+                <button id="btnAddVac" class="soft">+ إضافة إجازة</button>
+                <button id="btnSaveWeeks" class="primary">حفظ الأسابيع</button>
+              </div>
+
+              <div style="margin-top:10px" class="scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>order</th>
+                      <th>type</th>
+                      <th>weekNumber</th>
+                      <th>title</th>
+                      <th>startDateISO (أحد)</th>
+                      <th>حذف</th>
+                    </tr>
+                  </thead>
+                  <tbody id="weeksTbody"></tbody>
+                </table>
+              </div>
+
+              <div class="note" style="margin-top:10px">
+                startDateISO لازم يكون تاريخ الأحد.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="panel" style="border-radius:14px;margin-top:12px">
+          <div id="eventsHead" class="panelHead accordionHead">
+            <strong>إدارة الأحداث العامة</strong>
+            <span class="sub">تعديل/حذف + CSV</span>
+            <span class="chev" id="eventsChev">▾</span>
+          </div>
+          <div id="eventsBox" class="panelBody" style="display:none;">
+            <div class="rowBtns" style="justify-content:flex-start">
+              <button id="btnAdminAddPublic" class="soft">+ إضافة حدث عام</button>
+              <button id="btnRefreshPublic" class="ghost">تحديث</button>
+            </div>
+
+            <div class="scroll" style="margin-top:10px">
+              <table>
+                <thead>
+                  <tr>
+                    <th>التاريخ</th>
+                    <th>العنوان</th>
+                    <th>ملاحظة</th>
+                    <th>لون</th>
+                    <th>إجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="publicTbody"></tbody>
+              </table>
+            </div>
+
+            <hr style="border:none;border-top:1px solid var(--line);margin:14px 0">
+
+            <strong style="font-size:13px">استيراد CSV (عامة)</strong>
+            <div class="note" style="margin-top:8px">
+              الأعمدة: <span class="mono">dateISO,title,note,color</span>
+            </div>
+            <div class="grid2" style="margin-top:10px">
+              <div>
+                <label>ملف CSV</label>
+                <input id="csvFile" type="file" accept=".csv,text/csv">
+              </div>
+              <div>
+                <label>السلوك</label>
+                <select id="csvMode">
+                  <option value="append">إضافة (بدون حذف القديم)</option>
+                  <option value="replace_public">استبدال العامة (يحذف العامة ثم يضيف)</option>
+                </select>
+              </div>
+            </div>
+            <div class="rowBtns" style="margin-top:10px;justify-content:flex-start">
+              <button id="btnCsvPreview" class="soft">معاينة</button>
+              <button id="btnCsvImport" class="primary">استيراد</button>
+            </div>
+            <div id="csvResult" class="note" style="display:none;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar -->
+  <div class="weeks" id="weeksGrid" style="display:none;"></div>
+</div>
+
+<!-- Modal Add/Edit Event -->
+<div id="modalBack" class="modalBack" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="modalHead">
+      <strong id="modalTitle">إضافة حدث</strong>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span id="modalHint" class="hint"></span>
+        <button id="btnCloseModal" class="danger" style="padding:8px 10px">إغلاق</button>
+      </div>
+    </div>
+    <div class="modalBody">
+      <div class="grid2">
+        <div>
+          <label>التاريخ</label>
+          <input id="mDate" type="date">
+        </div>
+        <div>
+          <label>اللون</label>
+          <input id="mColor" type="color" value="#35c6ff">
+        </div>
+      </div>
+
+      <div style="margin-top:10px">
+        <label>العنوان</label>
+        <input id="mTitle" type="text" placeholder="عنوان الحدث">
+      </div>
+
+      <div style="margin-top:10px">
+        <label>ملاحظات (اختياري)</label>
+        <textarea id="mNote" placeholder="تفاصيل..."></textarea>
+      </div>
+
+      <div id="scopeWrap" style="margin-top:10px;display:none">
+        <label>نوع الحدث (للمدير فقط)</label>
+        <select id="mScope">
+          <option value="private">خاص</option>
+          <option value="public">عام</option>
+        </select>
+      </div>
+
+      <div class="rowBtns" style="margin-top:12px">
+        <button id="btnSaveModal" class="primary">حفظ</button>
+      </div>
+
+      <div class="note" style="margin-top:10px">
+        إضافة الحدث تتم بالنقر على اليوم. المستخدم = خاص، المدير = عام/خاص.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import {
+    getAuth, onAuthStateChanged,
+    signInWithEmailAndPassword, signOut,
+    sendPasswordResetEmail
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+  import {
+    getFirestore, collection, doc, getDoc, setDoc, addDoc, deleteDoc, updateDoc,
+    onSnapshot, query, orderBy, getDocs, writeBatch
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "PUT_HERE",
+    authDomain: "PUT_HERE",
+    projectId: "PUT_HERE",
+    storageBucket: "PUT_HERE",
+    messagingSenderId: "PUT_HERE",
+    appId: "PUT_HERE"
+  };
+
+  // templateId from URL
+  const templateId = new URLSearchParams(location.search).get("t");
+
+  const days = [
+    {name:"الأحد", off:false},{name:"الإثنين", off:false},{name:"الثلاثاء", off:false},
+    {name:"الأربعاء", off:false},{name:"الخميس", off:false},{name:"الجمعة", off:true},{name:"السبت", off:true},
+  ];
+
+  function escapeHtml(str){
+    return String(str||"")
+      .replaceAll("&","&amp;").replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+  }
+  function toISODate(d){
+    const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,"0"), da=String(d.getDate()).padStart(2,"0");
+    return `${y}-${m}-${da}`;
+  }
+  function addDays(d,n){ const x=new Date(d); x.setDate(x.getDate()+n); return x; }
+  function parseISOToDate(iso){ return new Date((iso||"").trim()+"T00:00:00"); }
+  function isValidISODate(s){ return /^\d{4}-\d{2}-\d{2}$/.test(String(s||"").trim()); }
+  function normColor(c){
+    const x=String(c||"").trim();
+    if(/^#[0-9a-fA-F]{6}$/.test(x)) return x;
+    return "#7c5cff";
+  }
+
+  const hasUmalqura = (() => {
+    try{
+      const fmt = new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura", { day:"numeric" });
+      return !!fmt.format(new Date());
+    }catch(e){ return false; }
+  })();
+  const fmtHijri = hasUmalqura
+    ? new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura", { year:"numeric", month:"long", day:"numeric" })
+    : null;
+  const fmtG = new Intl.DateTimeFormat("ar-SA", { year:"numeric", month:"2-digit", day:"2-digit" });
+
+  function buildDefaultWeekPlan(){
+    const plan=[];
+    for(let w=16; w<=19; w++) plan.push({ type:"week", weekNumber:w, title:`الأسبوع ${w}` });
+    plan.push({ type:"vac", weekNumber:0, title:"إجازة (أسبوع)" });
+    for(let w=1; w<=18; w++) plan.push({ type:"week", weekNumber:w, title:`الأسبوع ${w}` });
+    return plan;
+  }
+  const basePlan = buildDefaultWeekPlan();
+  function defaultWeeksFallbackFrom(sundayISO){
+    const baseSunday = parseISOToDate(sundayISO);
+    return basePlan.map((w,i)=>({
+      id:null, order:i+1, type:w.type, weekNumber:w.weekNumber, title:w.title,
+      startDateISO: toISODate(addDays(baseSunday, i*7))
+    }));
+  }
+
+  // UI refs
+  const pageTitle = document.getElementById("pageTitle");
+  const pageSub = document.getElementById("pageSub");
+  const templateBadge = document.getElementById("templateBadge");
+  const rolePill = document.getElementById("rolePill");
+
+  const demoNote = document.getElementById("demoNote");
+  const mustTemplate = document.getElementById("mustTemplate");
+  const noAccess = document.getElementById("noAccess");
+
+  const loginPanel = document.getElementById("loginPanel");
+  const adminPanel = document.getElementById("adminPanel");
+  const weeksGrid = document.getElementById("weeksGrid");
+
+  const btnShowLogin = document.getElementById("btnShowLogin");
+  const btnLogout = document.getElementById("btnLogout");
+  const loginEmail = document.getElementById("loginEmail");
+  const loginPass = document.getElementById("loginPass");
+  const btnLogin = document.getElementById("btnLogin");
+  const btnForgot = document.getElementById("btnForgot");
+
+  // accordions
+  const membersHead = document.getElementById("membersHead");
+  const membersBox = document.getElementById("membersBox");
+  const membersChev = document.getElementById("membersChev");
+
+  const weeksHead = document.getElementById("weeksHead");
+  const weeksBox = document.getElementById("weeksBox");
+  const weeksChev = document.getElementById("weeksChev");
+
+  const eventsHead = document.getElementById("eventsHead");
+  const eventsBox = document.getElementById("eventsBox");
+  const eventsChev = document.getElementById("eventsChev");
+
+  function toggleBox(box, chev){
+    const open = box.style.display !== "none";
+    box.style.display = open ? "none" : "block";
+    if(chev) chev.textContent = open ? "▾" : "▴";
+  }
+
+  // members UI
+  const memUid = document.getElementById("memUid");
+  const memRole = document.getElementById("memRole");
+  const btnAddMember = document.getElementById("btnAddMember");
+  const btnRefreshMembers = document.getElementById("btnRefreshMembers");
+  const membersTbody = document.getElementById("membersTbody");
+
+  // weeks UI
+  const btnAddWeek = document.getElementById("btnAddWeek");
+  const btnAddVac = document.getElementById("btnAddVac");
+  const btnSaveWeeks = document.getElementById("btnSaveWeeks");
+  const weeksTbody = document.getElementById("weeksTbody");
+
+  // public events UI
+  const btnAdminAddPublic = document.getElementById("btnAdminAddPublic");
+  const btnRefreshPublic = document.getElementById("btnRefreshPublic");
+  const publicTbody = document.getElementById("publicTbody");
+
+  // CSV
+  const csvFile = document.getElementById("csvFile");
+  const csvMode = document.getElementById("csvMode");
+  const btnCsvPreview = document.getElementById("btnCsvPreview");
+  const btnCsvImport = document.getElementById("btnCsvImport");
+  const csvResult = document.getElementById("csvResult");
+
+  // modal
+  const modalBack = document.getElementById("modalBack");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalHint = document.getElementById("modalHint");
+  const btnCloseModal = document.getElementById("btnCloseModal");
+  const btnSaveModal = document.getElementById("btnSaveModal");
+  const mDate = document.getElementById("mDate");
+  const mColor = document.getElementById("mColor");
+  const mTitle = document.getElementById("mTitle");
+  const mNote = document.getElementById("mNote");
+  const scopeWrap = document.getElementById("scopeWrap");
+  const mScope = document.getElementById("mScope");
+
+  const state = {
+    user:null,
+    memberRole:null,   // "admin" or "user"
+    firebaseReady:false,
+    templateLoaded:false,
+    templateMeta:null,
+    publicWeeks:[],
+    publicEvents:[],
+    privateEvents:[]
+  };
+
+  function isAdmin(){ return state.memberRole === "admin"; }
+
+  // Firebase init
+  let app=null, auth=null, db=null;
+  try{
+    app = initializeApp(firebaseConfig);
+    auth = getAuth(app);
+    db = getFirestore(app);
+    state.firebaseReady = true;
+  }catch(e){
+    state.firebaseReady = false;
+    demoNote.style.display = "block";
+    demoNote.innerHTML = "⚠️ Firebase غير جاهز. تأكد من firebaseConfig.";
+  }
+
+  function setRolePill(){
+    if(isAdmin()){
+      rolePill.innerHTML = `<span class="dot admin"></span><span>مدير القالب: ${escapeHtml(state.user?.email||"")}</span>`;
+    }else if(state.user){
+      rolePill.innerHTML = `<span class="dot user"></span><span>مستخدم: ${escapeHtml(state.user?.email||"")}</span>`;
+    }else{
+      rolePill.innerHTML = `<span class="dot guest"></span><span>زائر</span>`;
+    }
+
+    btnShowLogin.style.display = state.user ? "none" : "inline-block";
+    btnLogout.style.display = state.user ? "inline-block" : "none";
+  }
+
+  function showOnlyLogin(msg){
+    weeksGrid.style.display = "none";
+    adminPanel.style.display = "none";
+    loginPanel.style.display = "block";
+    noAccess.style.display = "none";
+    if(msg){
+      mustTemplate.style.display = "block";
+      mustTemplate.innerHTML = msg;
+    }
+  }
+
+  function showNoAccess(){
+    weeksGrid.style.display = "none";
+    adminPanel.style.display = "none";
+    loginPanel.style.display = "none";
+    noAccess.style.display = "block";
+    noAccess.innerHTML = "❌ ليس لديك صلاحية لهذا القالب. اطلب من المدير إضافتك كعضو.";
+  }
+
+  // Require templateId
+  if(!templateId){
+    mustTemplate.style.display = "block";
+    mustTemplate.innerHTML = "⚠️ لا يوجد templateId في الرابط. استخدم مثلًا: <span class='mono'>?t=schoolA</span>";
+    showOnlyLogin();
+  }else{
+    pageSub.textContent = `Template: ${templateId} — يتطلب تسجيل دخول + عضوية`;
+    templateBadge.textContent = `Template: ${templateId}`;
+  }
+
+  // Auth UI
+  btnShowLogin.onclick = ()=>{ loginPanel.style.display="block"; window.scrollTo({top:0,behavior:"smooth"}); };
+  btnLogout.onclick = async ()=>{ if(auth) await signOut(auth); };
+
+  btnLogin.onclick = async ()=>{
+    if(!state.firebaseReady) return alert("Firebase غير جاهز.");
+    const email = loginEmail.value.trim();
+    const pass = loginPass.value;
+    if(!email || !pass) return alert("أدخل البريد وكلمة المرور.");
+    try{ await signInWithEmailAndPassword(auth, email, pass); }
+    catch(err){ alert(err?.message || "فشل تسجيل الدخول."); }
+  };
+
+  btnForgot.onclick = async ()=>{
+    if(!state.firebaseReady) return alert("Firebase غير جاهز.");
+    const email = loginEmail.value.trim();
+    if(!email) return alert("اكتب البريد أولاً.");
+    try{
+      await sendPasswordResetEmail(auth, email);
+      alert("تم إرسال رابط إعادة تعيين كلمة المرور.");
+    }catch(err){
+      alert(err?.message || "تعذر الإرسال.");
+    }
+  };
+
+  // Accordions
+  membersHead.onclick = ()=> toggleBox(membersBox, membersChev);
+  weeksHead.onclick = ()=> toggleBox(weeksBox, weeksChev);
+  eventsHead.onclick = ()=> toggleBox(eventsBox, eventsChev);
+
+  // Paths helpers
+  const T = () => `templates/${templateId}`;
+  const colWeeks = () => collection(db, `${T()}/publicWeeks`);
+  const colPublicEvents = () => collection(db, `${T()}/publicEvents`);
+  const colMembers = () => collection(db, `${T()}/members`);
+  const docMember = (uid) => doc(db, `${T()}/members/${uid}`);
+  const colPrivateEvents = (uid) => collection(db, `${T()}/users/${uid}/privateEvents`);
+
+  async function getMemberRole(uid){
+    const snap = await getDoc(docMember(uid));
+    if(!snap.exists()) return null;
+    return snap.data()?.role || "user";
+  }
+
+  async function loadTemplateMeta(){
+    const snap = await getDoc(doc(db, `${T()}`));
+    if(snap.exists()){
+      state.templateMeta = snap.data();
+      pageTitle.textContent = state.templateMeta?.name ? state.templateMeta.name : "Calendar Pro v4";
+    }else{
+      // لو ما فيه template doc نعرض اسم افتراضي
+      pageTitle.textContent = "Calendar Pro v4";
+    }
+  }
+
+  // Render calendar
+  function renderCalendar(){
+    const plan = (state.publicWeeks?.length ? state.publicWeeks.slice() : []);
+    const events = [...state.publicEvents, ...(state.user ? state.privateEvents : [])];
+    const todayISO = toISODate(new Date());
+
+    weeksGrid.innerHTML = "";
+    if(!plan.length){
+      const box = document.createElement("div");
+      box.className = "warnBox";
+      box.textContent = "لا يوجد أسابيع داخل هذا القالب بعد. (المدير يستطيع إنشاؤها من لوحة التحكم)";
+      weeksGrid.appendChild(box);
+      return;
+    }
+
+    plan.sort((a,b)=>Number(a.order)-Number(b.order)).forEach(w=>{
+      const weekStart = parseISOToDate(w.startDateISO);
+      const weekEnd = addDays(weekStart, 6);
+
+      const baseTitle =
+        (w.title && String(w.title).trim()) ? w.title :
+        (w.type==="vac" ? "إجازة (أسبوع)" : `الأسبوع ${Number(w.weekNumber||0)}`);
+
+      const rangeG = `${fmtG.format(weekStart)} — ${fmtG.format(weekEnd)}`;
+      const rangeH = hasUmalqura ? `${fmtHijri.format(weekStart)} — ${fmtHijri.format(weekEnd)}` : "";
+
+      const labelWeek = (w.type==="week" && Number(w.weekNumber||0) > 0)
+        ? `الأسبوع الدراسي: ${Number(w.weekNumber)}`
+        : (w.type==="vac" ? "إجازة" : "");
+
+      const card = document.createElement("div");
+      card.className = "week";
+      card.innerHTML = `
+        <div class="weekHead">
+          <div class="title">
+            <strong>${escapeHtml(baseTitle)}</strong>
+            <span>(${escapeHtml(rangeG)}${hasUmalqura ? " | "+escapeHtml(rangeH) : ""}${labelWeek ? " — "+escapeHtml(labelWeek) : ""})</span>
+          </div>
+        </div>
+        <div class="table"></div>
+      `;
+      const table = card.querySelector(".table");
+
+      days.forEach(d=>{
+        const th = document.createElement("div");
+        th.className = "th" + (d.off ? " friSat" : "");
+        th.textContent = d.name;
+        table.appendChild(th);
+      });
+
+      days.forEach((d,di)=>{
+        const date = addDays(weekStart, di);
+        const iso = toISODate(date);
+        const td = document.createElement("div");
+        td.className = "td" + (d.off ? " friSat" : "");
+
+        const hTxt = hasUmalqura ? fmtHijri.format(date) : "—";
+        td.innerHTML = `<div class="gDate">${escapeHtml(fmtG.format(date))}</div><div class="hDate">${escapeHtml(hTxt)}</div>`;
+
+        if(iso===todayISO){
+          const b=document.createElement("div");
+          b.className="today"; b.textContent="اليوم";
+          td.appendChild(b);
+        }
+
+        const wrap = document.createElement("div");
+        wrap.className="events";
+
+        events.filter(e=>e.dateISO===iso).forEach(ev=>{
+          const item=document.createElement("div");
+          item.className="ev";
+          item.innerHTML = `
+            <span class="tag" style="background:${escapeHtml(ev.color||"#7c5cff")}"></span>
+            <div class="txt">
+              <div style="font-weight:900">${escapeHtml(ev.title||"")}</div>
+              ${ev.note ? `<div style="color:var(--muted);margin-top:2px">${escapeHtml(ev.note)}</div>` : ""}
+              <div class="badge">${ev.scope==="public" ? "عام" : "خاص"}</div>
+            </div>
+            ${((ev.scope==="public" && isAdmin()) || (ev.scope==="private" && state.user)) ? `<div class="x" title="حذف">×</div>` : ""}
+          `;
+
+          item.addEventListener("click", (e)=> e.stopPropagation());
+          const x=item.querySelector(".x");
+          if(x){
+            x.addEventListener("click",(e)=>{
+              e.stopPropagation();
+              if(!confirm("حذف الحدث؟")) return;
+              deleteEvent(ev);
+            });
+          }
+          wrap.appendChild(item);
+        });
+
+        td.appendChild(wrap);
+
+        // click day => add event
+        td.style.cursor = state.user ? "pointer" : "default";
+        td.addEventListener("click", ()=>{
+          if(!state.user) return alert("سجّل دخولك لإضافة حدث.");
+          openModal(iso, { mode:"add", scope:(isAdmin() ? "public" : "private") });
+        });
+
+        table.appendChild(td);
+      });
+
+      weeksGrid.appendChild(card);
+    });
+  }
+
+  // Members UI render
+  function renderMembersTable(members){
+    membersTbody.innerHTML = "";
+    if(!members.length){
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td colspan="3" style="color:var(--muted)">لا يوجد أعضاء.</td>`;
+      membersTbody.appendChild(tr);
+      return;
+    }
+    members.forEach(m=>{
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td class="mono">${escapeHtml(m.uid)}</td>
+        <td>${escapeHtml(m.role||"user")}</td>
+        <td><button class="danger" data-act="delMember" data-uid="${escapeHtml(m.uid)}">حذف</button></td>
+      `;
+      membersTbody.appendChild(tr);
+    });
+  }
+
+  // Weeks draft
+  let weeksDraft = [];
+  function loadWeeksDraft(){
+    weeksDraft = (state.publicWeeks?.length ? state.publicWeeks : []);
+    weeksDraft = weeksDraft.map(w=>({
+      id:w.id||null,
+      order:Number(w.order||0),
+      type:(w.type==="vac"?"vac":"week"),
+      weekNumber:Number(w.weekNumber||0),
+      title:w.title||"",
+      startDateISO:w.startDateISO||""
+    })).sort((a,b)=>a.order-b.order);
+    renderWeeksTable();
+  }
+  function renderWeeksTable(){
+    weeksTbody.innerHTML = "";
+    weeksDraft.forEach((w,idx)=>{
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><input class="mono" data-k="order" data-i="${idx}" type="number" min="1" value="${escapeHtml(w.order)}"></td>
+        <td>
+          <select data-k="type" data-i="${idx}">
+            <option value="week" ${w.type==="week"?"selected":""}>week</option>
+            <option value="vac" ${w.type==="vac"?"selected":""}>vac</option>
+          </select>
+        </td>
+        <td><input class="mono" data-k="weekNumber" data-i="${idx}" type="number" min="0" value="${escapeHtml(w.weekNumber)}"></td>
+        <td><input data-k="title" data-i="${idx}" type="text" value="${escapeHtml(w.title)}"></td>
+        <td><input class="mono" data-k="startDateISO" data-i="${idx}" type="date" value="${escapeHtml(w.startDateISO)}"></td>
+        <td><button class="danger" data-act="delWeek" data-i="${idx}">حذف</button></td>
+      `;
+      weeksTbody.appendChild(tr);
+    });
+  }
+
+  document.addEventListener("input",(e)=>{
+    const el=e.target;
+    if(!el || !el.closest("#weeksTbody")) return;
+    const i=Number(el.dataset.i); const k=el.dataset.k;
+    if(Number.isNaN(i) || !k) return;
+    weeksDraft[i][k] = (k==="order"||k==="weekNumber") ? Number(el.value||0) : el.value;
+  });
+  document.addEventListener("change",(e)=>{
+    const el=e.target;
+    if(!el || !el.closest("#weeksTbody")) return;
+    const i=Number(el.dataset.i); const k=el.dataset.k;
+    if(Number.isNaN(i) || !k) return;
+    weeksDraft[i][k] = (k==="order"||k==="weekNumber") ? Number(el.value||0) : el.value;
+    if(k==="type" && el.value==="vac"){ weeksDraft[i].weekNumber=0; renderWeeksTable(); }
+  });
+
+  btnAddWeek.onclick = ()=>{
+    const maxOrder = weeksDraft.reduce((m,w)=>Math.max(m,Number(w.order||0)),0);
+    weeksDraft.push({id:null,order:maxOrder+1,type:"week",weekNumber:0,title:"أسبوع جديد",startDateISO:""});
+    renderWeeksTable();
+  };
+  btnAddVac.onclick = ()=>{
+    const maxOrder = weeksDraft.reduce((m,w)=>Math.max(m,Number(w.order||0)),0);
+    weeksDraft.push({id:null,order:maxOrder+1,type:"vac",weekNumber:0,title:"إجازة (أسبوع)",startDateISO:""});
+    renderWeeksTable();
+  };
+
+  document.addEventListener("click", async (e)=>{
+    const delWeekBtn = e.target.closest('button[data-act="delWeek"]');
+    if(delWeekBtn){
+      const i=Number(delWeekBtn.dataset.i);
+      if(Number.isNaN(i)) return;
+      weeksDraft.splice(i,1);
+      renderWeeksTable();
+      return;
+    }
+
+    const delMemberBtn = e.target.closest('button[data-act="delMember"]');
+    if(delMemberBtn){
+      const uid = delMemberBtn.dataset.uid;
+      if(!confirm("حذف هذا العضو؟")) return;
+      await deleteDoc(doc(db, `${T()}/members/${uid}`));
+      return;
+    }
+
+    const editPub = e.target.closest('button[data-act="editPub"]');
+    if(editPub){
+      const id=editPub.dataset.id;
+      const ev = state.publicEvents.find(x=>x.id===id);
+      if(!ev) return;
+      openModal(ev.dateISO, {mode:"edit", scope:"public", id:ev.id, preset:ev});
+      return;
+    }
+
+    const delPub = e.target.closest('button[data-act="delPub"]');
+    if(delPub){
+      const id=delPub.dataset.id;
+      if(!confirm("حذف الحدث العام؟")) return;
+      await deleteDoc(doc(db, `${T()}/publicEvents/${id}`));
+      return;
+    }
+  });
+
+  btnSaveWeeks.onclick = async ()=>{
+    // replace all weeks
+    for(const w of weeksDraft){
+      if(!w.startDateISO) return alert("يوجد صف بدون startDateISO.");
+      if(w.type==="vac") w.weekNumber=0;
+    }
+    const snap = await getDocs(colWeeks());
+    const batch = writeBatch(db);
+    snap.docs.forEach(d=>batch.delete(d.ref));
+    weeksDraft.sort((a,b)=>Number(a.order)-Number(b.order)).forEach(w=>{
+      const ref = doc(colWeeks());
+      batch.set(ref,{
+        order:Number(w.order||0),
+        type:(w.type==="vac"?"vac":"week"),
+        weekNumber:Number(w.weekNumber||0),
+        title:(w.title||"").trim(),
+        startDateISO:(w.startDateISO||"").trim()
+      });
+    });
+    await batch.commit();
+    alert("تم حفظ الأسابيع.");
+  };
+
+  // Public events table
+  function renderPublicTable(){
+    publicTbody.innerHTML="";
+    const list = state.publicEvents.slice().sort((a,b)=>String(a.dateISO).localeCompare(String(b.dateISO)));
+    if(!list.length){
+      const tr=document.createElement("tr");
+      tr.innerHTML = `<td colspan="5" style="color:var(--muted)">لا توجد أحداث عامة.</td>`;
+      publicTbody.appendChild(tr);
+      return;
+    }
+    list.forEach(ev=>{
+      const tr=document.createElement("tr");
+      tr.innerHTML = `
+        <td class="mono">${escapeHtml(ev.dateISO||"")}</td>
+        <td>${escapeHtml(ev.title||"")}</td>
+        <td style="max-width:280px;overflow:hidden;text-overflow:ellipsis">${escapeHtml(ev.note||"")}</td>
+        <td><span style="display:inline-block;width:18px;height:18px;border-radius:6px;background:${escapeHtml(ev.color||"#7c5cff")};border:1px solid rgba(255,255,255,.18)"></span></td>
+        <td>
+          <button class="soft" data-act="editPub" data-id="${ev.id}">تعديل</button>
+          <button class="danger" data-act="delPub" data-id="${ev.id}">حذف</button>
+        </td>
+      `;
+      publicTbody.appendChild(tr);
+    });
+  }
+
+  btnAdminAddPublic.onclick = ()=> openModal(toISODate(new Date()), {mode:"add", scope:"public"});
+  btnRefreshPublic.onclick = ()=> renderPublicTable();
+
+  // CSV
+  function parseCSV(text){
+    const rows=[];
+    let i=0, field="", row=[], inQ=false;
+    const pushField=()=>{ row.push(field); field=""; };
+    const pushRow=()=>{ rows.push(row); row=[]; };
+    while(i<text.length){
+      const c=text[i];
+      if(inQ){
+        if(c === '"'){
+          if(text[i+1] === '"'){ field+='"'; i++; }
+          else inQ=false;
+        } else field+=c;
+      }else{
+        if(c === '"') inQ=true;
+        else if(c === ','){ pushField(); }
+        else if(c === '\n'){ pushField(); pushRow(); }
+        else if(c === '\r'){ }
+        else field+=c;
+      }
+      i++;
+    }
+    pushField(); pushRow();
+    return rows.filter(r=> r.some(x=>String(x||"").trim()!==""));
+  }
+  function rowsToObjects(rows){
+    if(!rows.length) return [];
+    const headers = rows[0].map(h=>String(h||"").trim());
+    return rows.slice(1).map(r=>{
+      const obj={};
+      headers.forEach((h,idx)=> obj[h]= (r[idx] ?? "").toString().trim());
+      return obj;
+    });
+  }
+  function normalizeImportedPublic(objs){
+    const items=[], problems=[];
+    objs.forEach((o,idx)=>{
+      const dateISO = String(o.dateISO||"").trim();
+      const title = String(o.title||"").trim();
+      const note  = String(o.note||"").trim();
+      const color = normColor(o.color);
+      if(!isValidISODate(dateISO)) problems.push(`السطر ${idx+2}: dateISO غير صحيح (${dateISO})`);
+      if(!title) problems.push(`السطر ${idx+2}: title فارغ`);
+      if(isValidISODate(dateISO) && title){
+        items.push({dateISO,title,note,color});
+      }
+    });
+    return {items, problems};
+  }
+  async function batchWrite(ops){
+    const CHUNK=450;
+    for(let i=0;i<ops.length;i+=CHUNK){
+      const batch=writeBatch(db);
+      ops.slice(i,i+CHUNK).forEach(x=>{
+        if(x.op==="del") batch.delete(x.ref);
+        else batch.set(x.ref, x.data);
+      });
+      await batch.commit();
+    }
+  }
+
+  btnCsvPreview.onclick = async ()=>{
+    if(!csvFile.files?.length) return alert("اختر ملف CSV.");
+    const text = await csvFile.files[0].text();
+    const rows = parseCSV(text);
+    const objs = rowsToObjects(rows);
+    const {items, problems} = normalizeImportedPublic(objs);
+    csvResult.style.display="block";
+    csvResult.innerHTML = `<b>جاهز:</b> ${items.length} — <b>مشاكل:</b> ${problems.length}`
+      + (problems.length ? `<div style="margin-top:8px;color:var(--warn)">${problems.slice(0,10).map(escapeHtml).join("<br>")}</div>` : "");
+  };
+
+  btnCsvImport.onclick = async ()=>{
+    if(!csvFile.files?.length) return alert("اختر ملف CSV.");
+    const text = await csvFile.files[0].text();
+    const rows = parseCSV(text);
+    const objs = rowsToObjects(rows);
+    const {items, problems} = normalizeImportedPublic(objs);
+    if(problems.length) return alert("أصلح مشاكل CSV أولاً.");
+    if(!items.length) return alert("لا يوجد عناصر صالحة.");
+
+    const mode = csvMode.value;
+    const ops=[];
+    if(mode==="replace_public"){
+      const snap = await getDocs(colPublicEvents());
+      snap.docs.forEach(d=> ops.push({op:"del", ref:d.ref}));
+    }
+    items.forEach(it=>{
+      const ref = doc(colPublicEvents());
+      ops.push({op:"set", ref, data:{...it, createdAt:Date.now()}});
+    });
+    await batchWrite(ops);
+    alert("تم الاستيراد.");
+    csvFile.value="";
+  };
+
+  // modal add/edit
+  const modalState = {mode:"add", id:null, scope:"private"};
+  function openModal(dateISO, opts={}){
+    modalState.mode = opts.mode || "add";
+    modalState.id = opts.id || null;
+    modalState.scope = opts.scope || "private";
+
+    modalTitle.textContent = (modalState.mode==="edit") ? "تعديل حدث" : "إضافة حدث";
+    modalHint.textContent = (modalState.scope==="public") ? "عام" : "خاص";
+
+    mDate.value = dateISO || "";
+    mTitle.value = opts.preset?.title || "";
+    mNote.value = opts.preset?.note || "";
+    mColor.value = opts.preset?.color || (modalState.scope==="public" ? "#7c5cff" : "#35c6ff");
+
+    if(isAdmin()){
+      scopeWrap.style.display="block";
+      mScope.value = modalState.scope;
+    }else{
+      scopeWrap.style.display="none";
+      mScope.value="private";
+    }
+
+    modalBack.style.display="flex";
+    setTimeout(()=>mTitle.focus(), 50);
+  }
+  function closeModal(){ modalBack.style.display="none"; }
+  btnCloseModal.onclick = closeModal;
+  modalBack.addEventListener("click",(e)=>{ if(e.target===modalBack) closeModal(); });
+  document.addEventListener("keydown",(e)=>{ if(e.key==="Escape" && modalBack.style.display==="flex") closeModal(); });
+
+  async function deleteEvent(ev){
+    if(ev.scope==="public"){
+      await deleteDoc(doc(db, `${T()}/publicEvents/${ev.id}`));
+    }else{
+      await deleteDoc(doc(db, `${T()}/users/${state.user.uid}/privateEvents/${ev.id}`));
+    }
+  }
+
+  btnSaveModal.onclick = async ()=>{
+    if(!state.user) return alert("سجّل الدخول أولاً.");
+    const dateISO = mDate.value;
+    const title = mTitle.value.trim();
+    const note = mNote.value.trim();
+    const color = mColor.value || "#35c6ff";
+    if(!dateISO || !title) return alert("أكمل البيانات.");
+
+    const finalScope = isAdmin() ? mScope.value : "private";
+
+    if(finalScope==="public"){
+      if(modalState.mode==="edit" && modalState.id){
+        await updateDoc(doc(db, `${T()}/publicEvents/${modalState.id}`), {dateISO,title,note,color});
+      }else{
+        await addDoc(colPublicEvents(), {dateISO,title,note,color,createdAt:Date.now()});
+      }
+    }else{
+      const col = colPrivateEvents(state.user.uid);
+      if(modalState.mode==="edit" && modalState.id){
+        await updateDoc(doc(db, `${T()}/users/${state.user.uid}/privateEvents/${modalState.id}`), {dateISO,title,note,color});
+      }else{
+        await addDoc(col, {dateISO,title,note,color,createdAt:Date.now()});
+      }
+    }
+
+    closeModal();
+  };
+
+  // admin add member
+  btnAddMember.onclick = async ()=>{
+    const uid = memUid.value.trim();
+    const role = memRole.value;
+    if(!uid) return alert("اكتب UID.");
+    await setDoc(doc(db, `${T()}/members/${uid}`), {role, addedAt:Date.now()}, {merge:true});
+    alert("تمت الإضافة/التحديث.");
+    memUid.value="";
+  };
+  btnRefreshMembers.onclick = ()=>{}; // onSnapshot سيحدث تلقائيًا
+
+  // Init flow
+  let unsubWeeks=null, unsubPublicEvents=null, unsubPrivate=null, unsubMembers=null;
+
+  function cleanup(){
+    unsubWeeks?.(); unsubPublicEvents?.(); unsubPrivate?.(); unsubMembers?.();
+    unsubWeeks=null; unsubPublicEvents=null; unsubPrivate=null; unsubMembers=null;
+  }
+
+  async function ensureTemplateSeedIfAdmin(){
+    // لو القالب ما فيه publicWeeks نعمل seed افتراضي (مرة واحدة) لكن فقط للـ admin
+    const weeksSnap = await getDocs(colWeeks());
+    if(!weeksSnap.empty) return;
+
+    // نحتاج بداية أحد—لو ما موجود نخليها "الأحد القادم"
+    const today = new Date();
+    const sunday = new Date(today);
+    sunday.setDate(today.getDate() - today.getDay()); // Sunday of current week
+    const sundayISO = toISODate(sunday);
+
+    const defaults = defaultWeeksFallbackFrom(sundayISO);
+    const batch = writeBatch(db);
+    defaults.forEach(w=>{
+      const ref = doc(colWeeks());
+      batch.set(ref,{
+        order:w.order,
+        type:w.type,
+        weekNumber:w.weekNumber,
+        title:w.title,
+        startDateISO:w.startDateISO
+      });
+    });
+    // create template meta if missing
+    const metaRef = doc(db, `${T()}`);
+    const metaSnap = await getDoc(metaRef);
+    if(!metaSnap.exists()){
+      batch.set(metaRef, {name:`Template ${templateId}`, createdAt:Date.now()});
+    }
+    await batch.commit();
+  }
+
+  if(state.firebaseReady){
+    onAuthStateChanged(auth, async (user)=>{
+      state.user = user;
+      setRolePill();
+
+      cleanup();
+      noAccess.style.display="none";
+      mustTemplate.style.display = (!templateId ? "block" : "none");
+
+      if(!templateId){
+        showOnlyLogin();
+        return;
+      }
+
+      if(!user){
+        showOnlyLogin("🔒 سجّل الدخول أولاً للوصول إلى القالب.");
+        return;
+      }
+
+      // check membership
+      state.memberRole = await getMemberRole(user.uid);
+      setRolePill();
+
+      if(!state.memberRole){
+        showNoAccess();
+        return;
+      }
+
+      // allowed: show calendar
+      loginPanel.style.display = "none";
+      weeksGrid.style.display = "block";
+      adminPanel.style.display = isAdmin() ? "block" : "none";
+      noAccess.style.display = "none";
+      mustTemplate.style.display = "none";
+
+      await loadTemplateMeta();
+
+      // seed default data if admin and empty
+      if(isAdmin()){
+        await ensureTemplateSeedIfAdmin();
+      }
+
+      // listeners
+      unsubWeeks = onSnapshot(query(colWeeks(), orderBy("order","asc")), (snap)=>{
+        state.publicWeeks = snap.docs.map(d=>({id:d.id, ...d.data()}));
+        loadWeeksDraft();
+        renderCalendar();
+      });
+
+      unsubPublicEvents = onSnapshot(query(colPublicEvents(), orderBy("dateISO","asc")), (snap)=>{
+        state.publicEvents = snap.docs.map(d=>({id:d.id, scope:"public", ...d.data()}));
+        renderPublicTable();
+        renderCalendar();
+      });
+
+      unsubPrivate = onSnapshot(query(colPrivateEvents(user.uid), orderBy("dateISO","asc")), (snap)=>{
+        state.privateEvents = snap.docs.map(d=>({id:d.id, scope:"private", ...d.data()}));
+        renderCalendar();
+      });
+
+      if(isAdmin()){
+        unsubMembers = onSnapshot(query(colMembers(), orderBy("addedAt","desc")), (snap)=>{
+          const members = snap.docs.map(d=>({uid:d.id, ...d.data()}));
+          renderMembersTable(members);
+        });
+      }
+
+      renderCalendar();
+    });
+  }
+</script>
+</body>
+</html>
